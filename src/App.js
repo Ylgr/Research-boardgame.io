@@ -1,28 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import { Client } from 'boardgame.io/react';
+import { Game } from 'boardgame.io/core';
+import TicTacToeBoard from './components/MainGame/TicTacToeBoard'
+
+const TicTacToe = Game({
+    setup: () => ({ cells: Array(9).fill(null) }),
+
+    moves: {
+        clickCell(G, ctx, id) {
+            let cells = [...G.cells]; // don't mutate original state.
+            cells[id] = ctx.currentPlayer;
+            return { ...G, cells }; // don't mutate original state.
+        },
+    },
+
+    flow: {
+        movesPerTurn: 1,
+        endGameIf: (G, ctx) => {
+            // if (IsVictory(G.cells)) {
+            //     return { winner: ctx.currentPlayer };
+            // }
+            // if (IsDraw(G.cells)) {
+            //     return { draw: true };
+            // }
+        },
+    },
+
+
+});
+
+const App = Client({
+    game: TicTacToe ,
+    board: TicTacToeBoard
+
+    // ai: AI({
+    //     enumerate: (G, ctx) => {
+    //         let moves = [];
+    //         for (let i = 0; i < 9; i++) {
+    //             if (G.cells[i] === null) {
+    //                 moves.push({ move: 'clickCell', args: [i] });
+    //             }
+    //         }
+    //         return moves;
+    //     },
+    // }),
+});
 
 export default App;
