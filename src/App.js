@@ -1,7 +1,7 @@
-
+import React from 'react';
 import { Client } from 'boardgame.io/react';
 import { Game } from 'boardgame.io/core';
-import TicTacToeBoard from './components/MainGame/TicTacToeBoard'
+import TicTacToeBoard from './components/Board/TicTacToeBoard'
 import { AI } from 'boardgame.io/ai';
 
 // Return true if `cells` is in a winning configuration.
@@ -64,21 +64,18 @@ const TicTacToe = Game({
 
 });
 
-const App = Client({
-    game: TicTacToe ,
+const TicTacToeClient = Client({
+    game: TicTacToe,
     board: TicTacToeBoard,
-
-    ai: AI({
-        enumerate: (G, ctx) => {
-            let moves = [];
-            for (let i = 0; i < 9; i++) {
-                if (G.cells[i] === null) {
-                    moves.push({ move: 'clickCell', args: [i] });
-                }
-            }
-            return moves;
-        },
-    }),
+    multiplayer: { local: true },
 });
+
+const App = () => (
+    <div>
+        <TicTacToeClient playerID="0"/>
+        <TicTacToeClient playerID="1"/>
+    </div>
+);
+
 
 export default App;

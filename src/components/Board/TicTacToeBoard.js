@@ -55,6 +55,7 @@ class TicTacToeBoard extends React.Component {
                 {winner}
             </div>
         );
+
     }
 }
 
