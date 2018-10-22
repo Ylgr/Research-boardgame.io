@@ -1,13 +1,21 @@
 import React from 'react';
 
 class TicTacToeBoard extends React.Component {
-    onClick(id) {
-        if (this.isActive(id)) {
-            this.props.moves.clickCell(id);
+    // onClick(id) {
+    //     if (this.isActive(id)) {
+    //         this.props.moves.clickCell(id);
+    //         this.props.events.endTurn();
+    //     }
+    // }
+    onClick(bool) {
+        if (bool) {
+            console.log("True");
+            this.props.events.endTurn();
+        } else {
+            console.log("False");
             this.props.events.endTurn();
         }
     }
-
     isActive(id) {
         if (!this.props.isActive) return false;
         if (this.props.G.cells[id] !== null) return false;
@@ -47,15 +55,25 @@ class TicTacToeBoard extends React.Component {
             tbody.push(<tr key={i}>{cells}</tr>);
         }
 
-        return (
+        // return (
+        //     <div>
+        //         <table id="board">
+        //             <tbody>{tbody}</tbody>
+        //         </table>
+        //         {winner}
+        //     </div>
+        // );
+        return(
             <div>
-                <table id="board">
-                    <tbody>{tbody}</tbody>
-                </table>
-                {winner}
+                <ul className="nav nav-pills flex-column">
+                    <li className="nav-item">
+                        <i className="fa fa-question  fa-question"></i>&nbsp;Tu is developer of this product ?
+                    </li>
+                    <li className="nav-item"><a className="nav-link" onClick={() => this.onClick(true)}>Yep!</a></li>
+                    <li className="nav-item"><a onClick={() => this.onClick(false)} className="nav-link">Nope!</a></li>
+                </ul>
             </div>
         );
-
     }
 }
 
