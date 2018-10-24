@@ -8,7 +8,7 @@ import QnABoard from './components/Board/QnABoard';
 const QnAClient = Client({
     game: QnAGame,
     board: QnABoard,
-    multiplayer: { server: 'localhost:8000' },
+    // multiplayer: { server: 'localhost:8000' },
 });
 
 
