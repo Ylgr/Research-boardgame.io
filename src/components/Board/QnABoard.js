@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class QnABoard extends React.Component {
     // onClick(id) {
@@ -8,13 +9,20 @@ class QnABoard extends React.Component {
     //     }
     // }
     //
+
+    static propTypes = {
+        bool: PropTypes.bool,
+        ctx: PropTypes.any.isRequired,
+        flow: PropTypes.any.isRequired
+    }
+
     onClick(bool) {
         if (bool) {
             console.log("True");
         } else {
             console.log("False");
         }
-        this.props.events.endTurn();
+        this.props.flow.endTurnIf(bool,"Banana");
     }
     //
     // // isActive(id) {

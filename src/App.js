@@ -84,7 +84,21 @@ import QnABoard from './components/Board/QnABoard'
 
 
 const QnA = Game({
-
+    name: 'QnA',
+    // moves: {
+    //     answer(bool) {
+    //
+    //     }
+    // },
+    flow: {
+        movesPerTurn: 1,
+        endTurnIf : (bool, ctx) => {
+            console.log('End Turn');
+            console.log(`Turn: {ctx}!`);
+            if(bool) return 'True';
+            else return 'False';
+        },
+    },
 });
 
 const QnAClient = Client({
