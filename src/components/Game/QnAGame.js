@@ -1,9 +1,7 @@
 const Game = require('boardgame.io/core').Game;
 const QnAGame = Game({
     name: 'QnA',
-    setup: () => ({
-        score: Number(0),
-    }),
+    setup: () => ({score: Number(0)}),
     moves: {
         answer(G,ctx,bool) {
             console.log(`${G.score}! have ${ctx.currentPlayer}!`);
@@ -24,5 +22,5 @@ const QnAGame = Game({
         },
     },
 });
-export default QnAGame;
-// module.exports = { QnAGame };
+// export default QnAGame;
+module.exports = { QnAGame };

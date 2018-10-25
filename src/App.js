@@ -1,14 +1,14 @@
 import React from 'react';
-import QnAGame from './components/Game/QnAGame';
+// import QnAGame from './components/Game/QnAGame';
 import { Client } from 'boardgame.io/react';
 import QnABoard from './components/Board/QnABoard';
 
-// const QnAGame = require('./components/Game/QnAGame').QnAGame;
+const QnAGame = require('./components/Game/QnAGame').QnAGame;
 
 const QnAClient = Client({
     game: QnAGame,
     board: QnABoard,
-    // multiplayer: { server: 'localhost:8000' },
+    // multiplayer: true,
 });
 
 
